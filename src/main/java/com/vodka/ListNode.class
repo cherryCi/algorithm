@@ -1,0 +1,52 @@
+public class ListNode{
+
+    int val;
+    ListNode next;
+    ListNode() {};
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+
+   /**
+     * 链表反转
+     * @param head
+     * @return
+     */
+    public ListNode reverseNode(ListNode head){
+        ListNode pre = null;
+        ListNode cur = head;
+        while(cur!=null){
+            ListNode tmp  = cur.next;// 保存当前下一个节点信息
+            cur.next = pre; //将下一个节点赋值
+            pre = cur;
+            cur = tmp;
+        }
+        return cur;
+    }
+
+    public ListNode findMidNode(ListNode head){
+        ListNode slow  = head;
+        ListNode  fast = head;
+        while(fast!=null && fast.next!=null){
+            slow = fast.next;
+            fast =fast.next.next;
+        }
+        return slow;
+    }
+
+    /**
+     * 链表模版对比
+     * @param A
+     * @param B
+     * @return
+     */
+    boolean compare(ListNode A, ListNode B) {
+        while(B != null) {
+            if(A.val != B.val) return false;
+            A = A.next;
+            B = B.next;
+        }
+        return true;
+    }
+
+
+}
