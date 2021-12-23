@@ -1,0 +1,31 @@
+/** 回溯算法
+ * 核心思路：
+ * 1.将要解决的问题转换成一颗树
+ * 2.按照多叉树的遍历方式，进行递归处理
+ * 3.最后统计结果
+ **/
+
+// leetcode  77
+class BackTrace {
+    List<List<Integer>>  res = new ArrayList();
+    public List<List<Integer>> combine(int n, int k) {
+        backTrack(n,k,1,new ArrayList<Integer>());
+        return res;
+    }
+
+
+    public void backTrack(int n,int k,int begin,List<Integer> result){
+        if(result.size() == k){
+            res.add(new ArrayList<>(result));
+            return ;
+        }
+        for(int i=begin;i<=n;i++){
+            if(result.contains(i)){
+                continue;
+            }
+            result.add(i);
+            backTrack(n,k,i,result);
+            result.remove(result.size()-1);
+        }
+  
+  }
